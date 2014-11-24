@@ -1,6 +1,6 @@
 import requests
 import json
-import copy
+
 
 class GServiceClient(object):
 
