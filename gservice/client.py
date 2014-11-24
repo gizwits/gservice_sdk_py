@@ -6,11 +6,12 @@ class GServiceClient(object):
 
     URL = 'http://api.gizwits.com/app'
     
-    def __init__(self, appid):
+    def __init__(self, appid, token=None):
         self.client = requests.Session()
         self.client.headers.update({
                 'X-Gizwits-Application-Id': appid,
                 'Content-Type': 'application/json'})
+        self.token = token
 
     def get_url(self, url):
         return GServiceClient.URL + url
@@ -63,5 +64,37 @@ class GServiceClient(object):
         url = self.get_url('/codes')
         data = {'phone': phone, 
                 'code': code}
+        return self.client.post(url, data=json.dumps(data))
+    
+    def bind_device(self, devices):
+        '''
+        :param device: struct = > [('did', 'passcode'), ...]
+        :returns: Response
+        '''
+        url = self.get_url('/bindings')
+        devices = []
+        for did, passcode in devices:
+            device = {'did': None, 'passcode': None}
+            device['did'] = did
+            device['passcode'] = passcode
+            devices.append(device)
+        data = {'devices':devices}
+        self.client.headers.update({'X-Gizwits-User-token': self.token})
+        return self.client.post(url, data=json.dumps(data))
+
+    def control_device(self, did, raw):
+        '''
+        :param did: did
+        :type did: String
+
+        :param raw: struct => [<byte>, <byte>, ...]
+        :type raw: list
+
+        :returns: Response
+        '''
+        data = {'raw': raw}
+        url = self.get_url('/control')
+        url = url + '/' + str(did)
+        self.client.headers.update({'X-Gizwits-User-token': self.token})
         return self.client.post(url, data=json.dumps(data))
 
