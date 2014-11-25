@@ -78,7 +78,7 @@ class GServiceClient(object):
             device['did'] = did
             device['passcode'] = passcode
             data_devices.append(device)
-        data = {'devices':devices}
+        data = {'devices':data_devices}
         self.client.headers.update({'X-Gizwits-User-token': self.token})
         return self.client.post(url, data=json.dumps(data))
 
