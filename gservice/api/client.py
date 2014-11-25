@@ -26,6 +26,8 @@ class APIClient(object):
         self.headers["X-Gizwits-User-token"] = self.token
     
     def login(self, acc, pwd):
+        '''login to gservice
+        '''
         r = self.send_request(login_call(acc, pwd))
         self.set_token(r['token'])
         self.uid = r['uid']

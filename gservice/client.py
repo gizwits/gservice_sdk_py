@@ -1,12 +1,14 @@
 import requests
 import json
 
+from api.client import APIClient
 
-class GServiceClient(object):
+class GServiceClient(APIClient):
 
     URL = 'http://api.gizwits.com/app'
     
     def __init__(self, appid, token=None):
+        APIClient.__init__(self)
         self.client = requests.Session()
         self.client.headers.update({
                 'X-Gizwits-Application-Id': appid,
