@@ -71,17 +71,17 @@ class GServiceClient(APIClient):
     
     def bind_device(self, devices):
         '''
-        :param device: struct = > [('did', 'passcode'), ...]
+        :param devices: struct = > [('did', 'passcode'), ...]
         :returns: Response
         '''
         url = self.get_url('/bindings')
-        devices = []
+        data_devices = []
         for did, passcode in devices:
             device = {'did': None, 'passcode': None}
             device['did'] = did
             device['passcode'] = passcode
-            devices.append(device)
-        data = {'devices':devices}
+            data_devices.append(device)
+        data = {'devices':data_devices}
         self.client.headers.update({'X-Gizwits-User-token': self.token})
         return self.client.post(url, data=json.dumps(data))
 
