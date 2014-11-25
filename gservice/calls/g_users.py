@@ -32,10 +32,6 @@ def anonymous_login(phone_id):
     request_body = {'phone_id': phone_id}
     return Request("POST", render_url('/users'), data=request_body)
 
-def update_user_info(username, password):
-    request_body = {'username': username, 'password': password}
-    return Request("PUT", render_url('/users'), data=request_body)
-
 def update_info(username, password):
     request_body = {'username': username, 'password': password}
     return Request("PUT", render_url('/users'), data=request_body)
