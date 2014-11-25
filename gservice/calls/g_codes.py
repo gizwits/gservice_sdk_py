@@ -21,4 +21,3 @@ def get_code(self, phone):
 def verify_code(self, phone, code):
     request_body = {'phone': phone, 'code': code}
     return Request("POST", render_url('/codes'), data=request_body)
-
