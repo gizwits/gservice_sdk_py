@@ -18,24 +18,24 @@ def auto_token(func):
 class GServiceClient(APIClient):
 
     def __init__(self, appid):
-	APIClient.__init__(self)
-	self.headers.update({
-		'X-Gizwits-Application-Id': appid,
-		})
+        APIClient.__init__(self)
+        self.headers.update({
+                'X-Gizwits-Application-Id': appid,
+                })
     @auto_token
     def create_user_by_username(self, username, password):
-	r = g_users.create_user_by_username(username, password)
-	return self.send_request(r)
+        r = g_users.create_user_by_username(username, password)
+        return self.send_request(r)
 
     @auto_token
     def create_user_by_email(self, email, password):
-	r = g_users.create_user_by_email(email, password)
-	return self.send_request(r)
+        r = g_users.create_user_by_email(email, password)
+        return self.send_request(r)
 
     @auto_token
     def create_user_by_phone(self, phone, password, code):
-	r = g_users.create_user_by_phone(phone, password, code)
-	return self.send_request(r)
+        r = g_users.create_user_by_phone(phone, password, code)
+        return self.send_request(r)
 
     @auto_token
     def anonymous_login(self, phone_id):
@@ -45,28 +45,28 @@ class GServiceClient(APIClient):
 
     @auto_token
     def _login(self, username, password):
-	r = g_login.login(username, password)
-	return self.send_request(r)
+        r = g_login.login(username, password)
+        return self.send_request(r)
 
     @auto_token
     def login_by_username(self, username, password):
-	return self._login(username, password)
+        return self._login(username, password)
 
     @auto_token
     def login_by_email(self, email, password):
-	return self._login(email, password)
+        return self._login(email, password)
 
     @auto_token
     def login_by_phone(self, phone, password):
-	return self._login(phone, password)
+        return self._login(phone, password)
 
     def get_code(self, phone):
-	r = g_codes.get_code(phone, password, code)
-	return self.send_request(r)
+        r = g_codes.get_code(phone, password, code)
+        return self.send_request(r)
 
     def verify_code(self, phone, code):
-	r = g_codes.verify_code(phone, code)
-	return self.send_request(r)
+        r = g_codes.verify_code(phone, code)
+        return self.send_request(r)
 
     def bind_device(self, devices):
         '''
@@ -78,12 +78,12 @@ class GServiceClient(APIClient):
 
 
     def control_device(self, did, raw):
-	'''
-	:param did: did
-	:type did: String
+        '''
+        :param did: did
+        :type did: String
 
-	:param raw: struct => [<byte>, <byte>, ...]
-	:type raw: list
+        :param raw: struct => [<byte>, <byte>, ...]
+        :type raw: list
 
         '''
         r = g_device.remote_control_device(did, raw)
@@ -91,4 +91,4 @@ class GServiceClient(APIClient):
 
 
     def get_bind_device(limit=20, skip=0):
-	return self.send_request(g_device.get_bound_devices(limit, skip))
+        return self.send_request(g_device.get_bound_devices(limit, skip))
