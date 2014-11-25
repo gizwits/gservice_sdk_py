@@ -39,7 +39,7 @@ def get_bound_devices(limit=20, skip=0):
         'limit': limit,
         'skip': skip
         }
-    return Request("GET", render_url('/bindings'), data=request_body)
+    return Request("GET", render_url('/bindings'), params=request_body)
 
 def bind_devices(devices):
     '''
