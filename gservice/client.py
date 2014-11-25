@@ -62,11 +62,11 @@ class GServiceClient(APIClient):
         return self._login(phone, password)
 
     def get_code(self, phone):
-        r = g_codes(phone, password, code)
+        r = g_codes.get_code(phone, password, code)
         return self.send_request(r)
 
     def verify_code(self, phone, code):
-        r = g_codes(phone, code)
+        r = g_codes.verify_code(phone, code)
         return self.send_request(r)
     
     def bind_device(self, devices):
