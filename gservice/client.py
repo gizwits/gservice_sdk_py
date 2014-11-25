@@ -2,40 +2,29 @@ import requests
 import json
 
 from api.client import APIClient
+from calls import g_users
 
 class GServiceClient(APIClient):
 
     URL = 'http://api.gizwits.com/app'
     
-    def __init__(self, appid, token=None):
+    def __init__(self, appid):
         APIClient.__init__(self)
-        self.client = requests.Session()
-        self.client.headers.update({
+        self.headers.update({
                 'X-Gizwits-Application-Id': appid,
-                'Content-Type': 'application/json'})
-        self.token = token
+                })
 
     def get_url(self, url):
         return GServiceClient.URL + url
 
     def create_user_by_username(self, username, password):
-        url = self.get_url('/users')
-        data = {'username': username,
-                'password': password}
-        return self.client.post(url, data=json.dumps(data))
+        pass
 
     def create_user_by_email(self, email, password):
-        url = self.get_url('/users')
-        data = {'email': email,
-                'password': password}
-        return self.client.post(url, data=json.dumps(data))
+        pass
 
     def create_user_by_phone(self, phone, password, code):
-        url = self.get_url('/users')
-        data = {'phone': phone,
-                'password': password,
-                'code': code}
-        return self.client.post(url, data=json.dumps(data))
+        pass
 
     def anonymous_login(self, phone_id):
         url = self.get_url('/users')
