@@ -7,13 +7,9 @@ module::Users
 todo: update_ need ``X-Gizwits-User-token: {token}``
 '''
 
+
 from requests import Request
-
-
-API_URL = "http://api.gizwits.com/app"
-
-def render_url(url):
-    return API_URL + url
+from g_common import API_URL, render_url
 
 def create_user_by_username(username, password):
     request_body = {'username': username,

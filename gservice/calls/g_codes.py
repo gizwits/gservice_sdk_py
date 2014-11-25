@@ -6,13 +6,10 @@ module::codes
 Get & Verify Codes
 '''
 
+
 from requests import Request
+from g_common import API_URL, render_url
 
-
-API_URL = "http://api.gizwits.com/app"
-
-def render_url(url):
-    return API_URL + url
 
 def get_code(self, phone):
     request_body = {'phone': phone}

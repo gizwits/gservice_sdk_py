@@ -8,8 +8,7 @@ Device operations
 
 
 from requests import Request
-
-API_URL = "http://api.gizwits.com/app"
+from g_common import API_URL, render_url
 
 
 def retrieve_device_histroy_data(did, start_ts=1349032093, end_ts=1349032093, entity=1, attr="temp", limit=20, skip=0):
