@@ -25,7 +25,7 @@ class TestRequest(unittest.TestCase):
         self.assertEquals(test, "PUT")
 
     def test_object(self):
-        user_url = g.common + '/users'
+        user_url = g_common.API_URL + '/users'
         req = g_users.create_user_by_username('','')
         self._http_POST(req.method)
         self.assertEquals(req.url, user_url)
@@ -63,18 +63,19 @@ class TestRequest(unittest.TestCase):
         self._http_PUT(req.method)
         self.assertEquals(req.url, user_url)
 
-        req = g_users.update_phone_code_pwd('','', '')
+        req = g_users.update_phone_pwd_code('','', '')
         self._http_PUT(req.method)
         self.assertEquals(req.url, user_url)
         
         # reset password
+        reset_url = 'http://api.gizwits.com/app/reset_password'
         req = g_users.password_reset('')
         self._http_PUT(req.method)
-        self.assertEquals(req.url, user_url)
+        self.assertEquals(req.url, reset_url)
 
         # login
         login_url = 'http://api.gizwits.com/app/login'
-        req = g_login.login('')
+        req = g_login.login('','')
         self._http_POST(req.method)
         self.assertEquals(req.url, login_url)
 
@@ -90,4 +91,4 @@ class TestRequest(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    pass
+    unittest.main()

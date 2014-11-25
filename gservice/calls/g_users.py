@@ -17,7 +17,7 @@ def create_user_by_username(username, password):
     return Request("POST", render_url('/users'), data=request_body)
 
 def create_user_by_email(email, password):
-    request_body = {'email': username,
+    request_body = {'email': email,
                     'password': password}
     return Request("POST", render_url('/users'), data=request_body)
 
@@ -26,6 +26,14 @@ def create_user_by_phone(phone, password, code):
                     'password': password,
                     'code': code
                     }
+    return Request("POST", render_url('/users'), data=request_body)
+
+def create_user_by_auth_data(auth_data):
+    '''
+    :param auth_data: struct => {'src':'baidu|sina|qq', 'uid':'2346677','token':'pnktnjyb996sj4p156gjtp4im'}
+    :type: dict
+    '''
+    request_body = {'authData': auth_data}
     return Request("POST", render_url('/users'), data=request_body)
 
 def anonymous_login(phone_id):
