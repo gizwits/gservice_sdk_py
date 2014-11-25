@@ -9,6 +9,7 @@ def auto_token(func):
     def _auto_token(*args, **kwargs):
         client_obj = args[0]    # like self
         d = func(*args, **kwargs)
+        d = d.json()
         client_obj = client_obj.set_token(d.get('token', 'ERROR'))
         logging.debug('token:%s'%client_obj.token)
         return d
