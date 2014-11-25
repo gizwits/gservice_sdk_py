@@ -24,7 +24,7 @@ class APIClient(object):
         '''Set token manually to avoid having to login repeatedly'''
         self.token = token
         self.headers["X-Gizwits-User-token"] = self.token
-    
+
     def login(self, acc, pwd):
         '''login to gservice
         '''
