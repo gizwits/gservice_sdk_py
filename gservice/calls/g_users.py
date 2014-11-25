@@ -49,7 +49,7 @@ def update_pwd(old_pwd, new_pwd):
         "old_pwd": str(old_pwd),
         "new_pwd": str(new_pwd)
         }
-     return Request("PUT", render_url('/users'), data=request_body)
+    return Request("PUT", render_url('/users'), data=request_body)
 
 def update_email(email):
     request_body = {
