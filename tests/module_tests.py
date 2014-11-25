@@ -87,3 +87,7 @@ class TestRequest(unittest.TestCase):
         req = g_codes.verify_code('', '')
         self._http_POST(req.method)
         self.assertEquals(req.url, codes_url)
+
+
+if __name__ == '__main__':
+    pass
