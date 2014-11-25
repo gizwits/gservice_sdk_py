@@ -11,7 +11,6 @@ def auto_token(func):
         resp = func(*args, **kwargs)
         d = resp.json()
         client_obj = client_obj.set_token(d.get('token', 'ERROR'))
-        logging.debug('token:%s'%client_obj.token)
         return resp
     return _auto_token
 
