@@ -101,7 +101,7 @@ class GServiceClient(APIClient):
         return self.send_request(r)
 
     # === device
-    def retrieve_device_histroy_data(did, start_ts=1349032093,
+    def retrieve_device_histroy_data(self, did, start_ts=1349032093,
                                      end_ts=1349032093, entity=1,
                                      attr="temp", limit=20,
                                      skip=0):
@@ -115,7 +115,7 @@ class GServiceClient(APIClient):
                                                   )
         return self.send_request(r)
 
-    def retrieve_product_histroy_data(product_key, did=None,
+    def retrieve_product_histroy_data(self, product_key, did=None,
                                       start_ts=1349032093, end_ts=1349032093,
                                       entity=1, attr="temp",
                                       limit=20, skip=0):
