@@ -89,5 +89,5 @@ class GServiceClient(APIClient):
         return self.send_request(r)
 
 
-    def get_bind_device(limit=20, skip=0):
+    def get_bind_device(self, limit=20, skip=0):
         return self.send_request(g_device.get_bound_devices(limit, skip))
