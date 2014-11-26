@@ -76,7 +76,7 @@ def password_reset(email):
     request_body = {
         "email": email
         }
-    return Request("PUT", render_url('/reset_password'), data=request_body)
+    return Request("POST", render_url('/reset_password'), data=request_body)
 
 def password_reset_with(phone, code, new_pwd):
     request_body = {

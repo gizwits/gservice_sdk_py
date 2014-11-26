@@ -23,16 +23,18 @@ def retrieve_device_histroy_data(did, start_ts=1349032093, end_ts=1349032093, en
     return Request("GET", url, data=request_body)
 
 def retrieve_product_histroy_data(product_key, did=None, start_ts=1349032093, end_ts=1349032093, entity=1, attr="temp", limit=20, skip=0):
-    request_body = {'did':did,
-                    'start_ts': start_ts,
-                    'end_ts': end_ts,
-                    'entity': entity,
-                    'attr': attr,
-                    'limit': limit,
-                    'skip': skip
-                    }
-    url = render_url('/devdata/' + str(product_key))
-    return Request("GET", url, data=request_body)
+    request_body = {
+        'product_key': product_key,
+        'did':did,
+        'start_ts': start_ts,
+        'end_ts': end_ts,
+        'entity': entity,
+        'attr': attr,
+        'limit': limit,
+        'skip': skip
+        }
+    url = render_url('/devdata')
+    return Request("GET", url, params=request_body)
 
 #===bound device
 def get_bound_devices(limit=20, skip=0):
@@ -76,7 +78,7 @@ def query_device(product_key, mac):
         'product_key': product_key,
         'mac':mac
         }
-    return Request("GET", render_url('/bindings'), data=request_body)
+    return Request("GET", render_url('/devices'), params=request_body)
 
 def remote_control_device(did, raw):
     '''
@@ -90,4 +92,4 @@ def remote_control_device(did, raw):
         'raw': raw
         }
     url = render_url('/control/' + str(did))
-    return Request("POST", url)
+    return Request("POST", url, data=request_body)
