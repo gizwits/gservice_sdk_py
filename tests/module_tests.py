@@ -70,7 +70,7 @@ class TestRequest(unittest.TestCase):
         # reset password
         reset_url = 'http://api.gizwits.com/app/reset_password'
         req = g_users.password_reset('')
-        self._http_PUT(req.method)
+        self._http_POST(req.method)
         self.assertEquals(req.url, reset_url)
 
         # login
