@@ -20,7 +20,7 @@ def retrieve_device_histroy_data(did, start_ts=1349032093, end_ts=1349032093, en
                     'skip': skip
                     }
     url = render_url('/devdata/' + str(did))
-    return Request("GET", url, data=request_body)
+    return Request("GET", url, params=request_body)
 
 def retrieve_product_histroy_data(product_key, did=None, start_ts=1349032093, end_ts=1349032093, entity=1, attr="temp", limit=20, skip=0):
     request_body = {
@@ -92,4 +92,4 @@ def remote_control_device(did, raw):
         'raw': raw
         }
     url = render_url('/control/' + str(did))
-    return Request("POST", url, data=request_body)
+    Return Request("POST", url, data=request_body)
