@@ -92,4 +92,4 @@ def remote_control_device(did, raw):
         'raw': raw
         }
     url = render_url('/control/' + str(did))
-    Return Request("POST", url, data=request_body)
+    return Request("POST", url, data=request_body)
