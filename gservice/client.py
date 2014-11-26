@@ -10,7 +10,12 @@ def auto_token(func):
         client_obj = args[0]    # like self
         resp = func(*args, **kwargs)
         d = resp.json()
-        client_obj = client_obj.set_token(d.get('token', 'ERROR'))
+        try:
+            _token = d['token']
+            client_obj = client_obj.set_token(_token)
+        except KeyError:
+            # ensure your request can get the token
+            pass
         return resp
     return _auto_token
 
