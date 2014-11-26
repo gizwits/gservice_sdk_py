@@ -34,6 +34,7 @@ def retrieve_product_histroy_data(product_key, did=None, start_ts=1349032093, en
     url = render_url('/devdata/' + str(product_key))
     return Request("GET", url, data=request_body)
 
+#===bound device
 def get_bound_devices(limit=20, skip=0):
     request_body = {
         'limit': limit,

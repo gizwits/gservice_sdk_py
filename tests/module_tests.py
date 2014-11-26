@@ -89,6 +89,46 @@ class TestRequest(unittest.TestCase):
         self._http_POST(req.method)
         self.assertEquals(req.url, codes_url)
 
+        # devices
+        device_data_url = 'http://api.gizwits.com/app/devdata'
+        req = g_device.retrieve_device_histroy_data('')
+        self._http_GET(req.method)
+        self.assertEquals(req.url, device_data_url)
+
+        req = g_device.retrieve_product_histroy_data('')
+        self._http_GET(req.method)
+        self.assertEquals(req.url, device_data_url)
+
+        # bound
+        bound_url = 'http://api.gizwits.com/app/bindings'
+        req = g_device.get_bound_devices('')
+        self._http_GET(req.method)
+        self.assertEquals(req.url, bound_url)
+        
+        req = g_device.bind_devices([])
+        self._http_POST(req.method)
+        self.assertEquals(req.url, bound_url)
+
+        req = g_device.unbind_devices([])
+        self._http_DELETE(req.method)
+        self.assertEquals(req.url, bound_url)
+
+        # device
+        device_url = 'http://api.gizwits.com/app/devices'
+        req = g_device.device_detail('')
+        self._http_GET(req.method)
+        self.assertEquals(req.url, device_url)
+
+        req = g_device.query_device('','')
+        self._http_GET(req.method)
+        self.assertEquals(req.url, device_url)
+
+        # control
+        control_url = 'http://api.gizwits.com/app/control'
+        req = g_device.remote_control_device('', [])
+        self._http_POST(req.method)
+        self.assertEquals(req.url, control_url)
+
 
 if __name__ == '__main__':
     unittest.main()
