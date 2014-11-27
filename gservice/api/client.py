@@ -45,7 +45,8 @@ class APIClient(object):
         # Include the session headers in the request
         request.headers.update(self.session.headers)
         if request.data == []:
-            request.data = json.dumps({})
+            # let the body clean.
+            # request.data = json.dumps({})
         else:
             request.data = json.dumps(request.data)
 
