@@ -47,6 +47,7 @@ class APIClient(object):
         if request.data == []:
             # let the body clean.
             # request.data = json.dumps({})
+            pass
         else:
             request.data = json.dumps(request.data)
 
