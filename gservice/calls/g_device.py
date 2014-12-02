@@ -47,7 +47,7 @@ def get_bound_devices(limit=20, skip=0):
 
 def bind_devices(devices):
     '''
-    :param devices: struct = > [('did', 'passcode', 'remark(optional'), ...]
+    :param devices: struct = > [('did', 'passcode', 'remark(optional)', ...]
     '''
     data_devices = []
     for d in devices:

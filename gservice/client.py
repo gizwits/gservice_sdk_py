@@ -138,7 +138,7 @@ class GServiceClient(APIClient):
     # bound device
     def bind_device(self, devices):
         '''
-        :param devices: struct = > [('did', 'passcode', 'remark(optional'), ...]
+        :param devices: struct = > [('did', 'passcode', 'remark(optional)', ...]
         :returns: Response
         '''
         r = g_device.bind_devices2(devices)
