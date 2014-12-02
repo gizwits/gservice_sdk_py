@@ -47,21 +47,6 @@ def get_bound_devices(limit=20, skip=0):
 
 def bind_devices(devices):
     '''
-    :param devices: struct = > [('did', 'passcode'), ...]
-    ***not available***
-    '''
-    data_devices = []
-    for did, passcode in devices:
-        device = {'did': None, 'passcode': None}
-        device['did'] = did
-        device['passcode'] = passcode
-        data_devices.append(device)
-    request_body = {'devices':data_devices}
-    return Request("POST", render_url('/bindings'), data=request_body)
-
-
-def bind_devices2(devices):
-    '''
     :param devices: struct = > [('did', 'passcode', 'remark(optional'), ...]
     '''
     data_devices = []

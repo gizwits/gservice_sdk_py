@@ -107,7 +107,7 @@ class TestRequest(unittest.TestCase):
         self._http_GET(req.method)
         self.assertEquals(req.url, bound_url)
         
-        req = g_device.bind_devices2([])
+        req = g_device.bind_devices([])
         self._http_POST(req.method)
         self.assertEquals(req.url, bound_url)
 
