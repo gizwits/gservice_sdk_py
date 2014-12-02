@@ -98,7 +98,7 @@ class GServiceClient(APIClient):
 
     #===codes
     def get_code(self, phone):
-        r = g_codes.get_code(phone, password, code)
+        r = g_codes.get_code(phone)
         return self.send_request(r)
 
     def verify_code(self, phone, code):
