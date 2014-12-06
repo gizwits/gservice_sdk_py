@@ -44,19 +44,24 @@ def get_bound_devices(limit=20, skip=0):
         }
     return Request("GET", render_url('/bindings'), params=request_body)
 
+
 def bind_devices(devices):
     '''
-    :param devices: struct = > [('did', 'passcode'), ...]
-    :returns: Response
+    :param devices: struct = > [('did', 'passcode', 'remark(optional)', ...]
     '''
     data_devices = []
-    for did, passcode in devices:
+    for d in devices:
         device = {'did': None, 'passcode': None}
-        device['did'] = did
-        device['passcode'] = passcode
+        device['did'] = d[0]
+        device['passcode'] = d[1]
+        try:
+            device['passcode'] = d[2]
+        except IndexError:
+            pass
         data_devices.append(device)
     request_body = {'devices':data_devices}
     return Request("POST", render_url('/bindings'), data=request_body)
+    
 
 def unbind_devices(devices):
     data_devices = []
@@ -92,4 +97,4 @@ def remote_control_device(did, raw):
         'raw': raw
         }
     url = render_url('/control/' + str(did))
-    Return Request("POST", url, data=request_body)
+    return Request("POST", url, data=request_body)

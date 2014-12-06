@@ -10,7 +10,12 @@ def auto_token(func):
         client_obj = args[0]    # like self
         resp = func(*args, **kwargs)
         d = resp.json()
-        client_obj = client_obj.set_token(d.get('token', 'ERROR'))
+        try:
+            _token = d['token']
+            client_obj = client_obj.set_token(_token)
+        except KeyError:
+            # ensure your request can get the token
+            pass
         return resp
     return _auto_token
 
@@ -93,7 +98,7 @@ class GServiceClient(APIClient):
 
     #===codes
     def get_code(self, phone):
-        r = g_codes.get_code(phone, password, code)
+        r = g_codes.get_code(phone)
         return self.send_request(r)
 
     def verify_code(self, phone, code):
@@ -101,7 +106,7 @@ class GServiceClient(APIClient):
         return self.send_request(r)
 
     # === device
-    def retrieve_device_histroy_data(did, start_ts=1349032093,
+    def retrieve_device_histroy_data(self, did, start_ts=1349032093,
                                      end_ts=1349032093, entity=1,
                                      attr="temp", limit=20,
                                      skip=0):
@@ -115,7 +120,7 @@ class GServiceClient(APIClient):
                                                   )
         return self.send_request(r)
 
-    def retrieve_product_histroy_data(product_key, did=None,
+    def retrieve_product_histroy_data(self, product_key, did=None,
                                       start_ts=1349032093, end_ts=1349032093,
                                       entity=1, attr="temp",
                                       limit=20, skip=0):
@@ -133,7 +138,7 @@ class GServiceClient(APIClient):
     # bound device
     def bind_device(self, devices):
         '''
-        :param devices: struct = > [('did', 'passcode'), ...]
+        :param devices: struct = > [('did', 'passcode', 'remark(optional)', ...]
         :returns: Response
         '''
         r = g_device.bind_devices(devices)
