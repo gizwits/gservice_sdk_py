@@ -55,7 +55,7 @@ def bind_devices(devices):
         device['did'] = d[0]
         device['passcode'] = d[1]
         try:
-            device['passcode'] = d[2]
+            device['remark'] = d[2]
         except IndexError:
             pass
         data_devices.append(device)
