@@ -72,7 +72,7 @@ class GServiceClient(APIClient):
         return self.send_request(r)
 
     def update_pwd(self, old_pwd, new_pwd):
-        r = g_users.update_pwd(username, password)
+        r = g_users.update_pwd(old_pwd, new_pwd)
         return self.send_request(r)
 
     def update_email(self, email):
