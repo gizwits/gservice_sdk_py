@@ -107,7 +107,7 @@ class GServiceClient(APIClient):
 
     # === device
     def retrieve_device_histroy_data(self, did, start_ts=None,
-                                     end_ts=None, entity=1,
+                                     end_ts=None, entity=None,
                                      attr=None, limit=20,
                                      skip=0):
         r = g_device.retrieve_device_histroy_data(did,
