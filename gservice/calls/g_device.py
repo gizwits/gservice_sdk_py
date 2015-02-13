@@ -9,7 +9,9 @@ Device operations
 
 from requests import Request
 from g_common import API_URL, render_url
+import logging
 
+logging.basicConfig(level=logging.DEBUG)
 
 def retrieve_device_histroy_data(did, start_ts=1349032093, end_ts=1349032093, entity=1, attr="temp", limit=20, skip=0):
     request_body = {'start_ts': start_ts,
@@ -98,3 +100,57 @@ def remote_control_device(did, raw):
         }
     url = render_url('/control/' + str(did))
     return Request("POST", url, data=request_body)
+
+def create_scheduler(date, time, repeat, retry_count, retry_task, tasks):
+    '''
+    :param date: required if repeat is 'none'
+    :param time: '2014-11-11'
+    :param repeat: "none" or "mon", "tue", "wed", "thu", "fri", "sat", "sun"
+    :param retry_count: retry totals
+    :param retry_task: "all" or "failed"
+    :param tasks: 
+        struct => {
+        "did": "did1",
+        "product_key": "xxx",
+            "attrs": {
+            "attr1": val,
+            "attr2": val
+            }
+        }
+    '''
+    request_body = {
+        "time": time,
+        "repeat": repeat,
+        "task": tasks,
+        "retry_count": retry_count,
+        "retry_task": retry_task
+        }
+    if date:
+        request_body['date'] = date
+    url = render_url('/scheduler')
+    logging.debug(url)
+    logging.debug(request_body)
+    return Request("POST", url, data=request_body)
+
+def fetch_scheduler(skip=None, limit=None):
+    '''
+    :param limit: (optional)
+    :param skip: (optional)
+    '''
+    request_body = {'limit':limit, 'skip':skip}
+    url = render_url('/scheduler')
+    return Request("GET", url, params=request_body)
+    
+def del_scheduler(sid):
+    '''
+    :param sid: scheduler id
+    '''
+    url = render_url('/scheduler/{0}'.format(sid))
+    return Request("DELETE", url)
+
+def scheduler_logs(sid):
+    '''
+    :param sid: scheduler id
+    '''
+    url = render_url('/scheduler/{0}/logs'.format(sid))
+    return Request("GET", url)

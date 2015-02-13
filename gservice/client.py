@@ -1,6 +1,15 @@
+
+'''
+    GService SDK Client
+    ~~~~~~~~~~~~~~~~~~~
+
+    document center: http://site.gizwits.com/document/m2m/openapi/
+'''
 import requests
 import json
 import logging
+
+logging.basicConfig(level=logging.DEBUG)
 
 from api.client import APIClient
 from calls import g_users, g_login, g_codes, g_device
@@ -185,3 +194,40 @@ class GServiceClient(APIClient):
         '''
         r = g_device.remote_control_device(did, raw)
         return self.send_request(r)
+
+    def create_scheduler(self, time, repeat, retry_count, retry_task, tasks, date=None):
+        '''
+        http://site.gizwits.com/document/m2m/openapi/#appschedulerlimitskip
+        :param date: required if repeat is 'none'
+        '''
+        r = g_device.create_scheduler(date, time, repeat, retry_count, retry_task, tasks)
+        resp = self.send_request(r)
+        logging.debug(resp.content)
+        return resp
+
+    def fetch_scheduler(self, skip=None, limit=None):
+        '''
+        http://site.gizwits.com/document/m2m/openapi/#get_4
+        '''
+        r = g_device.fetch_scheduler(skip, limit)
+        resp = self.send_request(r)
+        logging.debug(resp.content)
+        return resp
+
+    def del_scheduler(self, sid):
+        '''
+        http://site.gizwits.com/document/m2m/openapi/#delete_1
+        '''
+        r = g_device.del_scheduler(sid)
+        resp = self.send_request(r)
+        logging.debug(resp.content)
+        return resp
+
+    def scheduler_logs(self, sid):
+        '''
+        http://site.gizwits.com/document/m2m/openapi/#get_5
+        '''
+        r = g_device.scheduler_logs(sid)
+        resp = self.send_request(r)
+        logging.debug(resp.content)
+        return resp
