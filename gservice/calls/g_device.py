@@ -101,8 +101,6 @@ def remote_control_device(did, raw):
     url = render_url('/control/' + str(did))
     return Request("POST", url, data=request_body)
 
-#===scheduler
-
 def create_scheduler(date, time, repeat, retry_count, retry_task, tasks):
     '''
     :param date: required if repeat is 'none'
@@ -133,3 +131,13 @@ def create_scheduler(date, time, repeat, retry_count, retry_task, tasks):
     logging.debug(url)
     logging.debug(request_body)
     return Request("POST", url, data=request_body)
+
+def fetch_scheduler(skip=None, limit=None):
+    '''
+    :param limit: (optional)
+    :param skip: (optional)
+    '''
+    request_body = {'limit':limit, 'skip':skip}
+    url = render_url('/scheduler')
+    return Request("GET", url, params=request_body)
+    

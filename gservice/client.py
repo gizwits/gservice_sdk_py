@@ -204,3 +204,12 @@ class GServiceClient(APIClient):
         resp = self.send_request(r)
         logging.debug(resp.content)
         return resp
+
+    def fetch_scheduler(self, skip=None, limit=None):
+        '''
+        http://site.gizwits.com/document/m2m/openapi/#get_4
+        '''
+        r = g_device.fetch_scheduler(skip, limit)
+        resp = self.send_request(r)
+        logging.debug(resp.content)
+        return resp
