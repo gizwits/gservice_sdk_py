@@ -213,3 +213,12 @@ class GServiceClient(APIClient):
         resp = self.send_request(r)
         logging.debug(resp.content)
         return resp
+
+    def del_scheduler(self, sid):
+        '''
+        http://site.gizwits.com/document/m2m/openapi/#delete_1
+        '''
+        r = g_device.del_scheduler(sid)
+        resp = self.send_request(r)
+        logging.debug(resp.content)
+        return resp

@@ -141,3 +141,9 @@ def fetch_scheduler(skip=None, limit=None):
     url = render_url('/scheduler')
     return Request("GET", url, params=request_body)
     
+def del_scheduler(sid):
+    '''
+    :param sid: scheduler id
+    '''
+    url = render_url('/scheduler/{0}'.format(sid))
+    return Request("DELETE", url)
