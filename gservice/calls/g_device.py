@@ -147,3 +147,10 @@ def del_scheduler(sid):
     '''
     url = render_url('/scheduler/{0}'.format(sid))
     return Request("DELETE", url)
+
+def scheduler_logs(sid):
+    '''
+    :param sid: scheduler id
+    '''
+    url = render_url('/scheduler/{0}/logs'.format(sid))
+    return Request("GET", url)

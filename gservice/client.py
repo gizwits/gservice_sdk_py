@@ -222,3 +222,12 @@ class GServiceClient(APIClient):
         resp = self.send_request(r)
         logging.debug(resp.content)
         return resp
+
+    def scheduler_logs(self, sid):
+        '''
+        http://site.gizwits.com/document/m2m/openapi/#get_5
+        '''
+        r = g_device.scheduler_logs(sid)
+        resp = self.send_request(r)
+        logging.debug(resp.content)
+        return resp
