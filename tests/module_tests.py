@@ -133,6 +133,15 @@ class TestRequest(unittest.TestCase):
         self._http_POST(req.method)
         self.assertEquals(req.url, control_url)
 
+        # scheduler
+        control_did = 'test_did'
+        scheduler_url = 'http://api.gizwits.com/app/scheduler'
+        req = g_device.create_scheduler('', '', '', '', '', '')
+        self._http_POST(req.method)
+        self.assertEquals(req.url, scheduler_url)
+
+
+
 
 if __name__ == '__main__':
     unittest.main()
